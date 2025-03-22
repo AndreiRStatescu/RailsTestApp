@@ -3,7 +3,7 @@ class AccountsController < ApplicationController
   before_action :set_account, only: [:join, :leave]
   
   def index
-    @accounts = Account.all
+    @accounts = Account.order(:id)
     @user_accounts = current_user.accounts
   end
 
