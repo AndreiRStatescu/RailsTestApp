@@ -24,11 +24,22 @@
               <div class="aspect-h-1 aspect-w-1 w-full overflow-hidden">
                 <%= image_tag serve_image_path(key: key), class: "h-48 w-full object-contain object-center" %>
               </div>
-              <div class="mt-4 flex items-center justify-between">
-                <p class="text-sm font-medium text-gray-900 truncate">
-                  <span class="text-gray-500">ID:</span> <%= key.split('_').last %>
-                </p>
-                <%= button_to "Delete", account_image_path(@account, id: key), method: :delete, class: "rounded-md bg-red-600 px-2.5 py-1.5 text-sm font-semibold text-white shadow-sm hover:bg-red-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-600", form: { data: { turbo_confirm: "Are you sure you want to delete this image?" } } %>
+              <div class="mt-4 space-y-2">
+                <div class="flex items-center justify-between">
+                  <p class="text-sm font-medium text-gray-900 truncate">
+                    <span class="text-gray-500">ID:</span> <%= key.split('_').last %>
+                  </p>
+                  <span class="inline-flex items-center rounded-md bg-blue-50 px-2 py-1 text-xs font-medium text-blue-700 ring-1 ring-inset ring-blue-600/20">
+                    <svg class="h-3 w-3 mr-1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                      <path d="M10 12a2 2 0 100-4 2 2 0 000 4z" />
+                      <path fill-rule="evenodd" d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z" clip-rule="evenodd" />
+                    </svg>
+                    <%= ImageStorageService.get_visit_count(key) %> views
+                  </span>
+                </div>
+                <div class="flex justify-end">
+                  <%= button_to "Delete", account_image_path(@account, id: key), method: :delete, class: "rounded-md bg-red-600 px-2.5 py-1.5 text-sm font-semibold text-white shadow-sm hover:bg-red-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-600", form: { data: { turbo_confirm: "Are you sure you want to delete this image?" } } %>
+                </div>
               </div>
             </div>
           </div>
