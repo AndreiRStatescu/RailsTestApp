@@ -4,7 +4,17 @@ Rails.application.routes.draw do
       post :join
       delete :leave
     end
+    
+    # Nested routes for account images
+    resources :images, controller: 'account_images', only: [:index, :create, :destroy] do
+      collection do
+        get :upload
+      end
+    end
   end
+  
+  # Route for serving images from Redis
+  get "images/:key", to: "account_images#serve", as: :serve_image
   
   get "home/index"
   devise_for :users
