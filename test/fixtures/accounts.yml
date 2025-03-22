@@ -3,7 +3,9 @@
 one:
   name: Engineering Team
   description: For engineers working on product development
+  urls: <%= ["https://github.com/org/repo", "https://jira.company.com"].to_json %>
 
 two:
   name: Marketing Team
   description: For marketing and sales personnel
+  urls: <%= ["https://trello.com/marketing", "https://ads.google.com"].to_json %>

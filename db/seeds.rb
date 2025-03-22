@@ -4,16 +4,57 @@
 
 # Create sample accounts
 accounts = [
-  { name: 'Engineering Team', description: 'For engineers working on product development' },
-  { name: 'Marketing Team', description: 'For marketing and sales personnel' },
-  { name: 'Executive Team', description: 'For company executives and leadership' },
-  { name: 'Design Team', description: 'For designers and UX researchers' },
-  { name: 'Customer Support', description: 'For customer support and success team members' }
+  { 
+    name: 'Engineering Team', 
+    description: 'For engineers working on product development',
+    urls: [
+      'https://github.com/organization/repo',
+      'https://jira.company.com/projects/eng',
+      'https://confluence.company.com/engineering'
+    ]
+  },
+  { 
+    name: 'Marketing Team', 
+    description: 'For marketing and sales personnel',
+    urls: [
+      'https://trello.com/marketing',
+      'https://drive.google.com/marketing',
+      'https://analytics.google.com'
+    ]
+  },
+  { 
+    name: 'Executive Team', 
+    description: 'For company executives and leadership',
+    urls: [
+      'https://dashboard.company.com',
+      'https://investors.company.com',
+      'https://zoom.us/executive'
+    ]
+  },
+  { 
+    name: 'Design Team', 
+    description: 'For designers and UX researchers',
+    urls: [
+      'https://figma.com/team/design',
+      'https://miro.com/app/board/design',
+      'https://dribbble.com/company'
+    ]
+  },
+  { 
+    name: 'Customer Support', 
+    description: 'For customer support and success team members',
+    urls: [
+      'https://zendesk.com/support',
+      'https://intercom.io/inbox',
+      'https://help.company.com/admin'
+    ]
+  }
 ]
 
 accounts.each do |account_attrs|
   Account.find_or_create_by!(name: account_attrs[:name]) do |account|
     account.description = account_attrs[:description]
+    account.urls = account_attrs[:urls]
   end
 end
 
