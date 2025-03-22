@@ -10,7 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_03_22_115549) do
+ActiveRecord::Schema[8.0].define(version: 2025_03_22_121921) do
+  create_table "accounts", force: :cascade do |t|
+    t.string "name"
+    t.text "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "accounts_users", id: false, force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "account_id", null: false
+    t.index ["account_id", "user_id"], name: "index_accounts_users_on_account_id_and_user_id"
+    t.index ["user_id", "account_id"], name: "index_accounts_users_on_user_id_and_account_id", unique: true
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false

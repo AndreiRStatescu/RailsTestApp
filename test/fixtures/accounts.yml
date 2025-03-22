@@ -1,0 +1,9 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: Engineering Team
+  description: For engineers working on product development
+
+two:
+  name: Marketing Team
+  description: For marketing and sales personnel
