@@ -4,10 +4,15 @@ class AccountImagesController < ApplicationController
   
   def index
     # Show all images associated with this account
-    @image_keys = @account.image_key.present? ? [@account.image_key] : []
+    @image_keys = @account.image_keys || []
   end
   
   def upload
+    # Check if account has reached maximum images
+    if @account.max_images_reached?
+      redirect_to account_images_path(@account), alert: "Maximum number of images (#{Account::MAX_IMAGES}) reached. Please delete some images first."
+      return
+    end
     # Just render the form
   end
 
@@ -17,11 +22,17 @@ class AccountImagesController < ApplicationController
       return
     end
     
+    # Check if account has reached maximum images
+    if @account.max_images_reached?
+      redirect_to account_images_path(@account), alert: "Maximum number of images (#{Account::MAX_IMAGES}) reached. Please delete some images first."
+      return
+    end
+    
     result = ImageStorageService.store_image(@account.id, params[:image])
     
     if result[:success]
-      # Update the account with the new image key
-      @account.update(image_key: result[:key])
+      # Add the new image key to the account
+      @account.add_image_key(result[:key])
       redirect_to account_images_path(@account), notice: "Image uploaded successfully"
     else
       redirect_to upload_account_images_path(@account), alert: result[:error]
@@ -31,9 +42,13 @@ class AccountImagesController < ApplicationController
   def destroy
     image_key = params[:id]
     
-    if @account.image_key == image_key
+    if @account.image_keys.include?(image_key)
+      # Delete the image from Redis
       ImageStorageService.delete_image(image_key)
-      @account.update(image_key: nil)
+      
+      # Remove the key from the account
+      @account.remove_image_key(image_key)
+      
       redirect_to account_images_path(@account), notice: "Image deleted successfully"
     else
       redirect_to account_images_path(@account), alert: "Image not found or doesn't belong to this account"

@@ -2,7 +2,12 @@
   <div class="sm:flex sm:items-center">
     <div class="sm:flex-auto">
       <h1 class="text-base font-semibold leading-6 text-gray-900">Upload Image for <%= @account.name %></h1>
-      <p class="mt-2 text-sm text-gray-700">Upload a new image for this account. Any existing image will be replaced.</p>
+      <p class="mt-2 text-sm text-gray-700">
+        Upload a new image for this account.
+        <span class="font-medium text-indigo-600">
+          <%= @account.image_keys.size %> / <%= Account::MAX_IMAGES %> images used
+        </span>
+      </p>
     </div>
     <div class="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
       <%= link_to "Back to Images", account_images_path(@account), class: "block rounded-md bg-indigo-600 px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600" %>
@@ -25,5 +30,18 @@
         <%= form.submit "Upload Image", class: "flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600" %>
       </div>
     <% end %>
+  </div>
+  
+  <div class="mt-8 rounded-md bg-blue-50 p-4">
+    <div class="flex">
+      <div class="flex-shrink-0">
+        <svg class="h-5 w-5 text-blue-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+          <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a.75.75 0 000 1.5h.253a.75.75 0 00.736-.686A1.5 1.5 0 019.75 8.75h-.5A.75.75 0 008.5 8a1.5 1.5 0 011.236-1.476.75.75 0 00.713-.691 1.5 1.5 0 001.802-1.471.75.75 0 00-.739-.662H10.5a.75.75 0 000 1.5h.253a.75.75 0 00.736-.686A1.5 1.5 0 0110.25 3.75h-.5a.75.75 0 00-.75.75V9z" clip-rule="evenodd" />
+        </svg>
+      </div>
+      <div class="ml-3 flex-1 md:flex md:justify-between">
+        <p class="text-sm text-blue-700">You can upload up to <%= Account::MAX_IMAGES %> images per account. Images are stored temporarily and might be deleted periodically.</p>
+      </div>
+    </div>
   </div>
 </div>

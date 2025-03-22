@@ -14,6 +14,7 @@
               <th scope="col" class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-0">Name</th>
               <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Description</th>
               <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">URLs</th>
+              <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Images</th>
               <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Status</th>
               <th scope="col" class="relative py-3.5 pl-3 pr-4 sm:pr-0">
                 <span class="sr-only">Actions</span>
@@ -38,6 +39,15 @@
                     </ul>
                   <% else %>
                     <span class="text-gray-400">No URLs</span>
+                  <% end %>
+                </td>
+                <td class="px-3 py-4 text-sm">
+                  <% if account.image_keys.present? %>
+                    <span class="inline-flex items-center rounded-md bg-blue-50 px-2 py-1 text-xs font-medium text-blue-700 ring-1 ring-inset ring-blue-600/20">
+                      <%= account.image_keys.size %> / <%= Account::MAX_IMAGES %>
+                    </span>
+                  <% else %>
+                    <span class="text-gray-400">No images</span>
                   <% end %>
                 </td>
                 <td class="px-3 py-4 text-sm">

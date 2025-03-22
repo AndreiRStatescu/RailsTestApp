@@ -10,14 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_03_22_130016) do
+ActiveRecord::Schema[8.0].define(version: 2025_03_22_131432) do
   create_table "accounts", force: :cascade do |t|
     t.string "name"
     t.text "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.json "urls"
-    t.string "image_key"
+    t.json "image_keys", default: []
   end
 
   create_table "accounts_users", id: false, force: :cascade do |t|

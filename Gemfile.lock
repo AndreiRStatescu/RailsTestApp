@@ -163,6 +163,8 @@ GEM
     mini_magick (4.13.2)
     mini_mime (1.1.5)
     minitest (5.25.5)
+    mocha (2.7.1)
+      ruby2_keywords (>= 0.0.5)
     msgpack (1.8.0)
     net-imap (0.5.6)
       date
@@ -297,6 +299,7 @@ GEM
       rubocop-performance (>= 1.24)
       rubocop-rails (>= 2.30)
     ruby-progressbar (1.13.0)
+    ruby2_keywords (0.0.5)
     rubyzip (2.4.1)
     securerandom (0.4.1)
     selenium-webdriver (4.30.0)
@@ -404,6 +407,7 @@ DEPENDENCIES
   jbuilder
   kamal
   mini_magick (~> 4.12)
+  mocha
   propshaft
   puma (>= 5.0)
   rails (~> 8.0.2)
