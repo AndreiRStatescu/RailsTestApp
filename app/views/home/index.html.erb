@@ -1,15 +1,45 @@
-<h1>Welcome to Rails Test App</h1>
-
-<% if user_signed_in? %>
-  <p>You are signed in as: <%= current_user.full_name %></p>
-  <p>
-    <%= link_to "Edit profile", edit_user_registration_path %> |
-    <%= link_to "Sign out", destroy_user_session_path, data: { turbo_method: :delete } %>
-  </p>
-<% else %>
-  <p>Please sign in or sign up to access the application.</p>
-  <p>
-    <%= link_to "Sign in", new_user_session_path %> |
-    <%= link_to "Sign up", new_user_registration_path %>
-  </p>
-<% end %>
+<div class="bg-white shadow sm:rounded-lg">
+  <div class="px-4 py-5 sm:p-6">
+    <h2 class="text-2xl font-bold leading-7 text-gray-900 sm:truncate sm:text-3xl sm:tracking-tight">Welcome to Rails Test App</h2>
+    <div class="mt-4">
+      <% if user_signed_in? %>
+        <div class="rounded-md bg-blue-50 p-4">
+          <div class="flex">
+            <div class="ml-3">
+              <p class="text-sm font-medium text-blue-800">
+                You are signed in as: <span class="font-semibold"><%= current_user.full_name %></span>
+              </p>
+              <div class="mt-4">
+                <p class="text-sm text-blue-700">
+                  You now have full access to the application.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% else %>
+        <div class="rounded-md bg-yellow-50 p-4">
+          <div class="flex">
+            <div class="flex-shrink-0">
+              <svg class="h-5 w-5 text-yellow-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                <path fill-rule="evenodd" d="M8.485 2.495c.673-1.167 2.357-1.167 3.03 0l6.28 10.875c.673 1.167-.17 2.625-1.516 2.625H3.72c-1.347 0-2.189-1.458-1.515-2.625L8.485 2.495zM10 5a.75.75 0 01.75.75v3.5a.75.75 0 01-1.5 0v-3.5A.75.75 0 0110 5zm0 9a1 1 0 100-2 1 1 0 000 2z" clip-rule="evenodd" />
+              </svg>
+            </div>
+            <div class="ml-3">
+              <h3 class="text-sm font-medium text-yellow-800">Authentication required</h3>
+              <div class="mt-2 text-sm text-yellow-700">
+                <p>Please sign in or sign up to access the application.</p>
+              </div>
+              <div class="mt-4">
+                <div class="flex space-x-4">
+                  <%= link_to "Sign in", new_user_session_path, class: "rounded-md bg-yellow-50 px-3 py-2 text-sm font-semibold text-yellow-800 shadow-sm ring-1 ring-inset ring-yellow-600/20 hover:bg-yellow-100" %>
+                  <%= link_to "Sign up", new_user_registration_path, class: "rounded-md bg-yellow-50 px-3 py-2 text-sm font-semibold text-yellow-800 shadow-sm ring-1 ring-inset ring-yellow-600/20 hover:bg-yellow-100" %>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
