@@ -46,7 +46,7 @@ gem "thruster", require: false
 
 # Use Redis for storing images
 gem "redis", "~> 5.0"
-gem "mini_magick", "~> 4.12" # For image manipulation
+gem "mini_magick", "~> 5.2" # For image manipulation
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem

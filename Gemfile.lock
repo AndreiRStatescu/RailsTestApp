@@ -160,7 +160,9 @@ GEM
       net-smtp
     marcel (1.0.4)
     matrix (0.4.2)
-    mini_magick (4.13.2)
+    mini_magick (5.2.0)
+      benchmark
+      logger
     mini_mime (1.1.5)
     minitest (5.25.5)
     mocha (2.7.1)
@@ -399,7 +401,7 @@ DEPENDENCIES
   importmap-rails
   jbuilder
   kamal
-  mini_magick (~> 4.12)
+  mini_magick (~> 5.2)
   mocha
   pg (~> 1.5)
   propshaft
