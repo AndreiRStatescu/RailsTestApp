@@ -1,7 +1,7 @@
 class AccountsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_account, only: [:join, :leave]
-  
+  before_action :set_account, only: [ :join, :leave ]
+
   def index
     @accounts = Account.order(:id)
     @user_accounts = current_user.accounts
@@ -22,9 +22,9 @@ class AccountsController < ApplicationController
     end
     redirect_to accounts_path
   end
-  
+
   private
-  
+
   def set_account
     @account = Account.find(params[:id])
   end
